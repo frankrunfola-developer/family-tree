@@ -42,7 +42,7 @@ Open: http://127.0.0.1:5000
 ## File structure (with comments)
 
 ```text
-family-tree-lannister/
+family-tree-got/
 ├─ app.py                      # Flask server: serves the page + JSON API + photo upload endpoint
 ├─ requirements.txt            # Python dependencies (Flask)
 ├─ README.md                   # You are here
