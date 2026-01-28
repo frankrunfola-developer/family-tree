@@ -21,7 +21,8 @@ app = Flask(__name__)
 def load_family() -> Dict[str, Any]:
     if not DATA_FILE.exists():
         return {"people": [], "relationships": []}
-    return json.loads(DATA_FILE.read_text(encoding="utf-8"))
+    famDict = json.loads(DATA_FILE.read_text(encoding="utf-8"))
+    return famDict
 
 
 def save_family(payload: Dict[str, Any]) -> None:
@@ -40,7 +41,8 @@ def index():
 
 @app.get("/api/family")
 def api_get_family():
-    return jsonify(load_family())
+    famDict = load_family()
+    return jsonify(famDict)
 
 
 @app.post("/api/family")
