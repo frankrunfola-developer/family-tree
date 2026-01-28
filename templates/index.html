@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lannister Family Tree (Photo Nodes)</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+<body>
+  <header class="bar">
+    <div class="title">
+      <h1>Lannister Family Tree</h1>
+      <p class="sub">Vertical layout • photo nodes • zoom/pan</p>
+    </div>
+
+    <div class="controls">
+      <button id="reloadBtn">Reload</button>
+
+      <label class="file">
+        Upload Photo
+        <input id="photoUpload" type="file" accept="image/png,image/jpeg,image/webp" />
+      </label>
+
+      <select id="personSelect"></select>
+      <button id="assignPhotoBtn">Assign Photo</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="canvas"></div>
+
+    <details class="advanced">
+      <summary>Advanced: Edit JSON</summary>
+      <div class="adv-inner">
+        <button id="saveBtn">Save JSON</button>
+        <textarea id="jsonBox" spellcheck="false"></textarea>
+        <p class="hint">
+          Relationships are parent→child. The root ancestor is the person who is never listed as a child.
+        </p>
+      </div>
+    </details>
+  </main>
+
+  <script src="/static/js/tree.js"></script>
+</body>
+</html>

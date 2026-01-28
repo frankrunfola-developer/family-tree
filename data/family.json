@@ -1,0 +1,94 @@
+{
+  "people": [
+    {
+      "born": "242 AC",
+      "id": "tywin",
+      "name": "Tywin Lannister",
+      "photo": "/static/uploads/lannister/tywin.png"
+    },
+    {
+      "born": "245 AC",
+      "died": "273 AC",
+      "id": "joanna",
+      "name": "Joanna Lannister",
+      "photo": "/static/uploads/lannister/joanna.png"
+    },
+    {
+      "born": "266 AC",
+      "id": "cersei",
+      "name": "Cersei Lannister",
+      "photo": "/static/uploads/lannister/cersei.png"
+    },
+    {
+      "born": "266 AC",
+      "id": "jaime",
+      "name": "Jaime Lannister",
+      "photo": "/static/uploads/lannister/jaime.png"
+    },
+    {
+      "born": "273 AC",
+      "id": "tyrion",
+      "name": "Tyrion Lannister",
+      "photo": "/static/uploads/lannister/tyrion.png"
+    },
+    {
+      "born": "286 AC",
+      "died": "300 AC",
+      "id": "joffrey",
+      "name": "Joffrey Baratheon",
+      "photo": "/static/uploads/lannister/joffrey.png"
+    },
+    {
+      "born": "290 AC",
+      "died": "300 AC",
+      "id": "myrcella",
+      "name": "Myrcella Baratheon",
+      "photo": "/static/uploads/lannister/myrcella.png"
+    },
+    {
+      "born": "291 AC",
+      "died": "303 AC",
+      "id": "tommen",
+      "name": "Tommen Baratheon",
+      "photo": "/static/uploads/lannister/tommen.png"
+    }
+  ],
+  "relationships": [
+    {
+      "child": "cersei",
+      "parent": "tywin"
+    },
+    {
+      "child": "jaime",
+      "parent": "tywin"
+    },
+    {
+      "child": "tyrion",
+      "parent": "tywin"
+    },
+    {
+      "child": "cersei",
+      "parent": "joanna"
+    },
+    {
+      "child": "jaime",
+      "parent": "joanna"
+    },
+    {
+      "child": "tyrion",
+      "parent": "joanna"
+    },
+    {
+      "child": "joffrey",
+      "parent": "cersei"
+    },
+    {
+      "child": "myrcella",
+      "parent": "cersei"
+    },
+    {
+      "child": "tommen",
+      "parent": "cersei"
+    }
+  ]
+}

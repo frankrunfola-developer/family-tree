@@ -1,0 +1,69 @@
+:root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+
+body { margin: 0; background: #0b0c10; color: #e8e8e8; }
+
+.bar {
+  padding: 12px 16px;
+  border-bottom: 1px solid #222;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.title h1 { margin: 0; font-size: 18px; }
+.sub { margin: 2px 0 0 0; color: #bdbdbd; font-size: 12px; }
+
+.controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+button, select {
+  padding: 8px 10px;
+  border: 1px solid #333;
+  background: #14161a;
+  color: #e8e8e8;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover { border-color: #555; }
+
+.file { padding: 8px 10px; border: 1px dashed #444; border-radius: 8px; cursor: pointer; }
+.file input { display: none; }
+
+main { padding: 12px; }
+
+#canvas {
+  width: 100%;
+  height: calc(100vh - 140px);
+  border: 1px solid #222;
+  border-radius: 12px;
+  background: #0f1115;
+  overflow: hidden;
+}
+
+.advanced {
+  margin-top: 10px;
+  border: 1px solid #222;
+  border-radius: 12px;
+  background: #0f1115;
+  padding: 10px;
+}
+
+.adv-inner { margin-top: 10px; display: grid; gap: 8px; }
+
+textarea {
+  width: 100%;
+  height: 260px;
+  resize: vertical;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #2a2a2a;
+  background: #0b0c10;
+  color: #e8e8e8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.hint { color: #bdbdbd; font-size: 12px; margin: 0; }
