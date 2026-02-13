@@ -10,17 +10,10 @@
 export const TREE_CFG = {
   // Dagre layout (graph -> x/y positions)
   dagre: {
-    // Top-to-bottom layout
-    rankdir: "TB",
-
-    // Vertical distance between generations (rows)
-    ranksep: 65,
-
-    // Horizontal distance between nodes (columns)
-    nodesep: 100,
-
-    // Extra padding around the dagre graph
-    marginx: 10,
+    rankdir: "TB",  // Extra padding around the dagre graph
+    ranksep: 65, // Vertical distance between generations (rows)
+    nodesep: 100,// Horizontal distance between nodes (columns)
+    marginx: 10,   // Extra padding around the dagre graph
     marginy: 10,
   },
 
@@ -29,8 +22,6 @@ export const TREE_CFG = {
     CARD_W: 310,     // person card width
     CARD_H: 250,     // person card height
     CARD_R: 16,      // card corner radius
-
-
     PHOTO_R: 80,   // single source of truth for circle size
     PHOTO_Y: 14,   // top offset of the circle’s bounding box
 },
@@ -56,9 +47,7 @@ export const TREE_CFG = {
     // - parent drops down to the couple join line
     // - trunk from the couple join line down to the union point
     // - union-to-child elbow vertical stem (from union point to the elbow)
-    //
-    // If your connectors look too "tall" or too "flat", change *only* this value.
-    STEM: 30,
+    STEM: 30,   // If your connectors look too "tall" or too "flat", change *only* this value.
   },
 
   // Spacing policy (mostly used when building the graph)
@@ -78,5 +67,3 @@ export const TREE_CFG = {
     extra: 54,
   },
 };
-
-

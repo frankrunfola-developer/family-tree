@@ -7,50 +7,62 @@
     <link rel="stylesheet" href="/static/css/styles.css" />
   </head>
   <body>
-    <header class="topbar">
-      <div class="brand">
-        <div class="logo">LineAgeMap</div>
-        <div class="tag">Where your family’s story took shape</div>
-      </div>
 
-      <div class="topbar-right" aria-label="Brand mark">
-        <img
-          class="nav-logo"
-          src="/static/img/lineagemap_mark.svg"
-          alt="LineAgeMap mark"
-          width="40"
-          height="40"
-          loading="eager"
-        />
-      </div>
-    </header>
-
-    <main>
-      <div id="canvas">
-        <button id="fitTreeBtn" class="fit-btn" type="button">Fit to screen</button>
-        <svg id="treeSvg"></svg>
-      </div>
-
-      <section id="contact" class="footer">
-        <div class="foot-inner">
-          <div class="foot-left">
-            <div class="foot-brand">LineAgeMap</div>
-            <div class="foot-sub">Simple. Nostalgic. Shareable.</div>
+    <div class="appWrap">
+      <header class="topbar">
+        <!-- NEW: inner wrapper so the center label aligns to the same max-width as <main> / SVG -->
+        <div class="topbar-inner">
+          <div class="brand">
+            <div class="logo">LineAgeMap</div>
+            <div class="tag">Where your family’s story took shape</div>
           </div>
-          <div class="foot-right">
-            <span>© <span id="year"></span></span>
+
+          <!-- Center callout -->
+          <div class="nav-family" aria-label="Family tree label">
+            Gupta Family Tree
+          </div>
+
+          <div class="topbar-right" aria-label="Brand mark">
+            <img
+              class="nav-logo"
+              src="/static/img/lineagemap_mark.svg"
+              alt="LineAgeMap mark"
+              width="40"
+              height="40"
+              loading="eager"
+            />
           </div>
         </div>
-      </section>
-    </main>
+      </header>
 
-    <!-- Dagre MUST load before tree.js (tree.js reads window.dagre) -->
-    <script src="https://cdn.jsdelivr.net/npm/dagre@0.8.5/dist/dagre.min.js"></script>
+      <main>
+        <div id="canvas">
+          <button id="fitTreeBtn" class="fit-btn" type="button">Fit to screen</button>
+          <svg id="treeSvg"></svg>
+        </div>
 
-    <!-- tree.js uses ES module imports -->
-    <script type="module" src="/static/js/tree.js"></script>
-    <script>
-      document.getElementById("year").textContent = String(new Date().getFullYear());
-    </script>
+        <section id="contact" class="footer">
+          <div class="foot-inner">
+            <div class="foot-left">
+              <div class="foot-brand">LineAgeMap</div>
+              <div class="foot-sub">Simple. Nostalgic. Shareable.</div>
+            </div>
+            <div class="foot-right">
+              <span>© <span id="year"></span></span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Dagre MUST load before tree.js (tree.js reads window.dagre) -->
+      <script src="https://cdn.jsdelivr.net/npm/dagre@0.8.5/dist/dagre.min.js"></script>
+
+      <!-- tree.js uses ES module imports -->
+      <script type="module" src="/static/js/tree.js"></script>
+      <script>
+        document.getElementById("year").textContent = String(new Date().getFullYear());
+      </script>
+    </div>
+
   </body>
 </html>

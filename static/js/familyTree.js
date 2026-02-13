@@ -146,7 +146,9 @@ function applyViewBox(svg, nodes, opts = {}) {
   svg.setAttribute("viewBox", `${vbX} ${vbY} ${vbW} ${vbH}`);
   svg.setAttribute("width", "100%");
   svg.setAttribute("height", "100%");
-  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+  // Keep scaling, but pin to top so it doesn't float with big vertical bands on tall screens
+  svg.setAttribute("preserveAspectRatio", "xMidYMin meet");
+
 }
 
 function pickMeta(raw) {
@@ -270,8 +272,18 @@ export function renderFamilyTree(svg, { nodes, links, width, height }) {
   _LAST_NODES = nodes;
   _LAST_SVG = svg;
 
-  // Auto-frame the tree inside the SVG (with minimums so small trees don't over-zoom)
-  applyViewBox(svg, nodes, { enforceMin: true });
+  // Treat tablet widths as "narrow" too; otherwise min viewBox enforcement adds big blank bands
+  const isNarrow = window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
+
+
+  applyViewBox(svg, nodes, {
+    enforceMin: !isNarrow,
+    padOverride: isNarrow ? 4 : undefined,
+    extraOverride: isNarrow ? 0 : undefined,
+  });
+
+
+
 
   const viewport = el("g");
   viewport.setAttribute("class", "tree-viewport");

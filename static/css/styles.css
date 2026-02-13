@@ -8,12 +8,9 @@
   --ink-2: rgba(40, 32, 24, 0.72);
   --line: rgba(40, 32, 24, 0.14);
 
-  --card: rgba(255,255,255,0.70);
-  --card-2: rgba(255,255,255,0.55);
-
   /* Layout sizing */
   --page-pad: 22px;
-  --content-max: 1000px;
+  --content-max: 1200px;
 
   /* Tree (SVG) */
   --tree-link: rgba(64, 52, 38, 0.42);
@@ -40,14 +37,23 @@ body{
   position: sticky;
   top: 0;
   z-index: 10;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 16px;
-  padding: 8px 20px;
+
+  /* visuals stay on the full-width sticky bar */
+  padding: 8px var(--page-pad);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(6px);
   background: rgba(244, 239, 230, 0.86);
+}
+
+/* NEW: constrain header contents to match <main> width */
+.topbar-inner{
+  max-width: var(--content-max);
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* left / centered title / right */
+  align-items: center;
+  gap: 16px;
 }
 
 .brand .logo{
@@ -63,13 +69,40 @@ body{
   color: var(--ink-2);
 }
 
+/* Center navbar callout (centered within topbar-inner) */
+.nav-family{
+  white-space: nowrap;
+
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 12.5px;
+  line-height: 1;
+
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(40, 32, 24, 0.18);
+  background: rgba(255,255,255,0.36);
+  box-shadow: 0 8px 18px rgba(40, 32, 24, 0.06);
+  backdrop-filter: blur(6px);
+
+  /* changed for grid centering */
+  justify-self: center;
+  margin: 0;
+}
+
 /* Top-right brand mark */
 .topbar-right{
   display:flex;
   align-items:center;
   justify-content:center;
-  margin-left: auto; /* keep it pinned right */
+
+  /* changed for grid */
+  justify-self: end;
+  margin-left: 0;
 }
+
 .nav-logo{
   display:block;
   width: 50px;
@@ -97,7 +130,6 @@ main{
     linear-gradient(180deg, rgba(255,255,255,0.25), rgba(255,255,255,0.10));
   overflow:hidden;
 
-  /* Desktop default */
   height: calc(100vh - 100px);
   min-height: 520px;
 
@@ -142,7 +174,7 @@ main{
   align-items:flex-end;
   justify-content:space-between;
   gap: 12px;
-  padding: 10px 2px 6px;
+  padding: 10px 0 6px; /* match header/content edges */
   color: var(--ink-2);
   font-size: 13px;
 }
@@ -163,32 +195,21 @@ main{
     --content-max: 1100px;
   }
 
-  /* KEEP TOPBAR HORIZONTAL so logo stays put */
-  .topbar{
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-  }
+  /* Center label gets cramped on small screens — hide it */
+  .nav-family{ display: none; }
 
-  .brand{ order: 1; }
-  .navlinks{
-    order: 2;
-    flex: 1;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .topbar-right{ order: 3; }
-
-  /* tighten page + canvas so "fit to screen" doesn't leave big vertical bands */
   main{
     padding: 10px var(--page-pad) 12px;
   }
 
+  /* Key: stop forcing a tall viewport; let content determine height */
   #canvas{
-    height: calc(100svh - 150px);
-    min-height: 320px;
+    height: auto;
+    min-height: 440px; /* was 360px */
+  }
+
+  #treeSvg{
+    height: auto;
   }
 }
 
@@ -196,7 +217,7 @@ main{
   :root{ --page-pad: 12px; }
 
   .topbar{
-    padding: 12px 14px;
+    padding: 12px var(--page-pad);
     gap: 10px;
   }
 
@@ -204,9 +225,10 @@ main{
     padding: 8px var(--page-pad) 10px;
   }
 
+  /* keep tight behavior (do NOT reintroduce fixed height) */
   #canvas{
-    height: calc(100svh - 140px);
-    min-height: 300px;
+    height: auto;
+    min-height: 400px; /* was 320px */
   }
 }
 
@@ -214,7 +236,7 @@ main{
   :root{ --page-pad: 10px; }
 
   .topbar{
-    padding: 10px 12px;
+    padding: 10px var(--page-pad);
   }
 
   main{
@@ -222,8 +244,8 @@ main{
   }
 
   #canvas{
-    height: calc(100svh - 132px);
-    min-height: 280px;
+    height: auto;
+    min-height: 260px; /* was 300px */
     border-radius: 14px;
   }
 
