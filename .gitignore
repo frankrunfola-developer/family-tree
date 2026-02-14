@@ -43,7 +43,6 @@ dist/
 
 # ---- User uploads ----
 # Ignore all user uploads, but keep the placeholder so the folder exists in git
-static/uploads/*
 !static/uploads/.gitkeep
 
 # If you want to ALSO ignore the preloaded lannister avatars, uncomment:
