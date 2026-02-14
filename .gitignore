@@ -29,11 +29,21 @@ build/
 dist/
 *.egg-info/
 
+# ---- Archives / export bundles ----
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+
 # ---- Local secrets (if you ever add them) ----
 .env
 .env.*
 
 # ---- User uploads ----
+# Ignore all user uploads, but keep the placeholder so the folder exists in git
+static/uploads/*
 !static/uploads/.gitkeep
 
 # If you want to ALSO ignore the preloaded lannister avatars, uncomment:
