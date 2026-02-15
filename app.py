@@ -41,7 +41,22 @@ def load_family_file(path: Path) -> Dict[str, Any]:
 
 @app.get("/")
 def index():
-    return render_template("index.html")
+    return render_template("landing.html")
+
+
+@app.get("/tree")
+def tree_view():
+    return render_template("tree.html")
+
+
+@app.get("/timeline")
+def timeline_view():
+    return render_template("timeline.html")
+
+
+@app.get("/map")
+def map_view():
+    return render_template("map.html")
 
 
 # Tree data endpoint (read-only)

@@ -115,3 +115,10 @@ Notes:
 - `GET /` → landing page
 - `GET /api/tree/<name>` → returns `DATA_DIR/family_<name>.json`
 
+
+
+## Landing Page
+The root route `/` is a view chooser with big buttons for:
+- `/tree`
+- `/map`
+- `/timeline`

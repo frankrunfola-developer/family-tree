@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>LineAgeMap — Timeline</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+  </head>
+  <body>
+    <div class="appWrap">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand">
+            <div class="logo">LineAgeMap</div>
+            <div class="tag">Where your family’s story took shape</div>
+          </div>
+
+          <div class="nav-family" aria-label="Page label">
+            Lineage Map
+          </div>
+
+          <div class="topbar-right" aria-label="Brand mark">
+
+<a class="home-btn" href="/" aria-label="Home">
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M3 11.5l9-8 9 8" />
+    <path d="M6.5 10.5V20h11V10.5" />
+  </svg>
+</a>
+
+            <a class="topbar-link" href="/" aria-label="Back to landing">
+              <img class="nav-logo" src="/static/img/favicon.ico" alt="LineAgeMap mark" width="40" height="40" loading="eager" />
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div id="canvas" class="panel">
+          <div class="placeholder">
+            <div class="placeholder-title">Timeline</div>
+            <div class="placeholder-sub">A clean, photo-driven event timeline is next. This page is wired and ready for the renderer.</div>
+            <div class="placeholder-actions">
+              <a class="btn-primary" href="/tree">Open Tree</a>
+              <a class="btn-ghost" href="/">Back</a>
+            </div>
+          </div>
+        </div>
+
+        <section id="contact" class="footer">
+          <div class="foot-inner">
+            <div class="foot-left">
+              <div class="foot-brand">LineAgeMap</div>
+              <div class="foot-sub">Simple. Nostalgic. Shareable.</div>
+            </div>
+            <div class="foot-right">
+              <span>© <span id="year"></span></span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <script>
+        document.getElementById("year").textContent = String(new Date().getFullYear());
+      </script>
+    </div>
+  </body>
+</html>
