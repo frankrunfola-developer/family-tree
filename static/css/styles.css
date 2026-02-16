@@ -821,3 +821,103 @@ main{
   }
 }
 
+
+
+/* ================================
+   Map page (LineAgeMap clean + nostalgic)
+   ================================ */
+
+.map-shell{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 22px 16px 10px;
+}
+
+.map-panel{
+  background: rgba(246,242,234,.85);
+  border: 1px solid rgba(122,79,60,.16);
+  border-radius: 28px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.05);
+  padding: 18px;
+}
+
+.map-canvas{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(255,255,255,.35);
+}
+
+.map-bg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(.85) contrast(.95);
+  opacity: .95;
+}
+
+.map-pins{
+  position: absolute;
+  inset: 0;
+}
+
+/* Portrait pins */
+.avatar-pin{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none; /* ultra-clean: no interactive clutter */
+}
+
+.avatar-pin-img{
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,.92);
+  box-shadow: 0 10px 22px rgba(0,0,0,.10);
+}
+
+.avatar-pin-label{
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(122,79,60,.14);
+  border-radius: 14px;
+  padding: 8px 10px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.08);
+  max-width: 220px;
+}
+
+.avatar-pin-name{
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 13px;
+  color: rgba(74,46,35,.92);
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.avatar-pin-city{
+  font-family: var(--sans);
+  font-size: 12px;
+  color: rgba(74,46,35,.70);
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Mobile: labels become tighter */
+@media (max-width: 700px){
+  .avatar-pin-img{ width: 40px; height: 40px; }
+  .avatar-pin-label{ padding: 7px 9px; border-radius: 12px; max-width: 190px; }
+  .avatar-pin-name{ font-size: 12px; }
+  .avatar-pin-city{ font-size: 11px; }
+}
