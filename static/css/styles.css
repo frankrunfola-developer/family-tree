@@ -679,3 +679,145 @@ main{
   }
   .home-btn svg{ width: 17px; height: 17px; }
 }
+
+/* Nav pill icon (center label) */
+.nav-pill-icon{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  opacity: 0.85;
+}
+.nav-pill-icon svg{
+  width: 18px;
+  height: 18px;
+  stroke: rgba(64, 52, 38, 0.70);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+/* Landing (compact tiles, inviting vibe) */
+.landing2{
+  padding: 22px 0 10px;
+  text-align: center;
+}
+
+.landing2-hero{
+  padding: 10px 0 14px;
+}
+
+.landing2-headline{
+  margin: 0;
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-weight: 650;
+  font-size: clamp(30px, 4.4vw, 46px);
+  letter-spacing: -0.01em;
+  color: rgba(64, 52, 38, 0.92);
+}
+
+.landing2-sub{
+  margin: 10px auto 0;
+  max-width: 52ch;
+  color: rgba(40, 32, 24, 0.68);
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+.landing2-tiles{
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-items: center;
+  gap: 18px;
+}
+
+/* ~half size vs previous big squares */
+.landing2-tile{
+  width: min(150px, 100%);
+  height: 150px;
+  border-radius: 16px;
+
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  padding: 14px 12px;
+
+  text-decoration: none;
+  color: rgba(64, 52, 38, 0.92);
+
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(64, 52, 38, 0.16);
+  box-shadow:
+    0 14px 34px rgba(40, 32, 24, 0.10),
+    0 5px 14px rgba(40, 32, 24, 0.07);
+  backdrop-filter: blur(6px);
+
+  transition: transform 120ms ease, background 120ms ease;
+}
+
+.landing2-tile:hover{
+  background: rgba(255,255,255,0.62);
+}
+
+.landing2-tile:active{
+  transform: translateY(1px);
+}
+
+.landing2 .tileIcon{
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+}
+
+.landing2 .tileIcon svg{
+  width: 46px;
+  height: 46px;
+  stroke: rgba(64, 52, 38, 0.72);
+  stroke-width: 2.0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.landing2 .tileLabel{
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+/* Small, tasteful ornament under tiles */
+.landing2-ornament{
+  margin: 18px auto 0;
+  width: min(520px, 78%);
+  opacity: 0.55;
+}
+.landing2-ornament span{
+  display:block;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(64,52,38,0.00),
+    rgba(64,52,38,0.20),
+    rgba(64,52,38,0.00)
+  );
+}
+
+/* Responsive */
+@media (max-width: 860px){
+  .landing2-tiles{
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .landing2-tile{
+    width: min(240px, 100%);
+    height: 130px;
+    grid-auto-flow: row;
+  }
+}
+
