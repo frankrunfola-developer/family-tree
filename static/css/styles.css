@@ -1,11 +1,11 @@
+/* static/css/styles.css */
+
 /* Cleaned LineAgeMap styles.css
    - Single landing implementation (photo mock)
    - Consolidated responsive rules
    - Tree canvas + map pin styles preserved
    Replace your current styles.css with this file.
 */
-
-/* Source file inspected: see original upload. :contentReference[oaicite:1]{index=1} */
 
 :root{
   color-scheme: light;
@@ -28,7 +28,6 @@
   --card-border: rgba(120,92,70,.22);
   --card-shadow: rgba(60,40,25,.14);
 
-
   /* Layout sizing */
   --page-pad: 22px;
   --content-max: 1500px;
@@ -42,6 +41,16 @@
   --tree-photo-ring: rgba(64, 52, 38, 0.18);
   --tree-text-strong: rgba(40, 32, 24, 0.92);
   --tree-text-soft: rgba(40, 32, 24, 0.70);
+
+  /* NEW: responsive sizing helpers (navbar + hero title) */
+  --nav-btn-font: clamp(12px, 1.35vw, 14px);
+  --nav-btn-pad-y: clamp(7px, 1.05vw, 9px);
+  --nav-btn-pad-x: clamp(10px, 1.55vw, 14px);
+
+  --brand-font: clamp(18px, 3.1vw, 34px);
+
+  /* marketing hero title should scale down gracefully */
+  --hero-font: clamp(26px, 5.1vw, 44px);
 }
 
 /* --- Auth status in topbar --- */
@@ -135,7 +144,6 @@ body.marketing{
   background-image:
     linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0)),
     repeating-linear-gradient(90deg, rgba(110,80,60,.05) 0px, rgba(110,80,60,.05) 1px, rgba(255,255,255,0) 8px, rgba(255,255,255,0) 14px);
-  /* Vintage bar depth: thin highlight + thin shadow lines, plus soft drop shadow */
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.60),
     inset 0 -1px 0 rgba(90,60,42,.22),
@@ -149,7 +157,6 @@ body.marketing{
   background: var(--nav-highlight);
   pointer-events:none;
 }
-
 .topbar::after{
   content:"";
   position:absolute;
@@ -167,6 +174,8 @@ body.marketing{
   align-items: center;
   gap: 16px;
 }
+
+/* brand baseline (kept) */
 .brand .logo{ font-weight:800; letter-spacing:0.2px; font-size:18px; line-height:1.1; }
 .brandLeft .logo{
   font-family: var(--serif);
@@ -200,7 +209,14 @@ body.marketing{
   margin:0;
 }
 
-.topbar-right{ display:flex; align-items:center; justify-content:center; justify-self:end; }
+.topbar-right{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  justify-self:end;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
 .nav-logo{ width:50px; height:50px; filter: drop-shadow(0 4px 10px rgba(40,32,24,0.16)); opacity:0.95; }
 
 /* subtle home button */
@@ -220,7 +236,7 @@ body.marketing{
   display:inline-flex;
   align-items:center;
   gap: 8px;
-  padding: 9px 14px;
+  padding: var(--nav-btn-pad-y) var(--nav-btn-pad-x);
   border-radius: 999px;
   border: 1px solid rgba(120,92,70,.22);
   background:
@@ -229,11 +245,13 @@ body.marketing{
   text-decoration:none;
   font-family: var(--serif);
   font-weight: 700;
-  font-size: 14px;
+  font-size: var(--nav-btn-font);
+  line-height: 1;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.55),
     0 10px 18px rgba(40,32,24,0.08);
   backdrop-filter: blur(8px);
+  white-space: nowrap;
 }
 .btn:hover{ filter: brightness(1.03); transform: translateY(-1px); }
 
@@ -345,7 +363,6 @@ main{ padding: 10px var(--page-pad) 22px; max-width: var(--content-max); margin:
    ========================================================= */
 
 .landingPage{
-  /* subtle parchment paper */
   background-color: #efe7e1;
   background-image:
     radial-gradient(1200px 700px at 50% 30%, rgba(255,255,255,.55), rgba(255,255,255,0)),
@@ -477,20 +494,31 @@ main{ padding: 10px var(--page-pad) 22px; max-width: var(--content-max); margin:
 
 @media (max-width: 475px){
   :root{ --page-pad:10px; }
-  .topbar{ padding:8px var(--page-pad); } .topbar-inner{ gap:8px; }
-  .brand .logo{ font-size:15px; } .brand .tag{ font-size:10.5px; }
+  .topbar{ padding:8px var(--page-pad); }
+  .topbar-inner{ gap:8px; }
+
+  .brand .logo{ font-size:15px; }
+  .brand .tag{ font-size:10.5px; }
+
   .nav-family{ max-width:46vw; font-size:10px; letter-spacing:0.10em; padding:5px 8px; }
   .nav-logo{ width:38px; height:38px; }
+
   #canvas{ height:auto; min-height:260px; border-radius:14px; }
   .fit-btn{ top:10px; right:10px; padding:8px 10px; font-size:13px; }
+
   .foot-inner{ flex-direction:column; align-items:flex-start; font-size:11.5px; }
   .foot-brand{ font-size:12.5px; } .foot-sub{ font-size:11px; }
-  .home-btn{ width:34px; height:34px; border-radius:11px; margin-right:6px; } .home-btn svg{ width:17px; height:17px; }
+
+  .home-btn{ width:34px; height:34px; border-radius:11px; margin-right:6px; }
+  .home-btn svg{ width:17px; height:17px; }
+
   .navTile{ height:82px; }
 }
 
 @media (max-width: 360px){
-  .brand .tag{ display:none; } .nav-family{ max-width:44vw; font-size:9px; padding:4px 7px; } .nav-logo{ width:34px; height:34px; }
+  .brand .tag{ display:none; }
+  .nav-family{ max-width:44vw; font-size:9px; padding:4px 7px; }
+  .nav-logo{ width:34px; height:34px; }
 }
 @media (max-width: 320px){
   .nav-family{ max-width:40vw; font-size:8.5px; padding:3px 6px; }
@@ -506,33 +534,9 @@ main{ padding: 10px var(--page-pad) 22px; max-width: var(--content-max); margin:
 /* Landing page special: hide topbar/footer when in landingPage mode */
 .landingPage .topbar, .landingPage .footer{ display:none !important; }
 
-
-
-
 /* ============================
    Landing mock — exact look
    ============================ */
-
-.landingPage{
-  /* subtle parchment paper */
-  background-color: #efe7e1;
-  background-image:
-    radial-gradient(1200px 700px at 50% 30%, rgba(255,255,255,.55), rgba(255,255,255,0)),
-    radial-gradient(900px 520px at 50% 60%, rgba(140,110,90,.14), rgba(0,0,0,0)),
-    linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06)),
-    repeating-linear-gradient(0deg,
-      rgba(120,85,60,.012) 0px,
-      rgba(120,85,60,.012) 1px,
-      rgba(255,255,255,0) 3px,
-      rgba(255,255,255,0) 9px
-    ),
-    repeating-linear-gradient(90deg,
-      rgba(120,85,60,.010) 0px,
-      rgba(120,85,60,.010) 1px,
-      rgba(255,255,255,0) 4px,
-      rgba(255,255,255,0) 11px
-    );
-}
 
 .landing{
   min-height: 100vh;
@@ -589,7 +593,6 @@ main{ padding: 10px var(--page-pad) 22px; max-width: var(--content-max); margin:
   padding: 6px 0 10px;
 }
 
-/* corner florals near the tile row */
 .tileRow::before,
 .tileRow::after{
   content:"";
@@ -639,103 +642,48 @@ main{ padding: 10px var(--page-pad) 22px; max-width: var(--content-max); margin:
   letter-spacing: .02em;
 }
 
-/* top-right home icon */
-.landingHome{
-  position: fixed;
-  top: 18px;
-  right: 18px;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  color: rgba(95,65,46,.72);
-  background: rgba(255,255,255,.40);
-  border: 1px solid rgba(120,85,60,.18);
-  box-shadow: 0 14px 34px rgba(40,32,24,0.14);
-  backdrop-filter: blur(10px);
-  text-decoration: none;
-}
-.landingHome svg{ width: 20px; height: 20px; }
-
-/* mobile: sleek stacked tiles */
-@media (max-width: 760px){
-  .heroLine{ grid-auto-flow: row; gap: 10px; }
-  .flourish{ display:none; }
-  .tileRow{ grid-auto-flow: row; width: min(520px, 92vw); gap: 14px; }
-  .tileRow::before, .tileRow::after{ display:none; }
-
-  .navTile{
-    width: 100%;
-    height: 172px;
-    grid-template-columns: 64px 1fr;
-    grid-template-rows: 1fr;
-    justify-items: start;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 16px;
-  }
-
-  .tileIcon{ width: 52px; height: 52px; }
-  .tileIcon svg{ width: 44px; height: 44px; }
-  .tileLabel{ font-size: 22px; }
-}
-
 /* ===== Landing mobile polish ===== */
 @media (max-width: 760px){
-  /* pull content up a bit so it doesn't feel empty */
   .landingHero{
     width: min(560px, 94vw);
     gap: 22px;
     transform: translateY(-6px);
   }
 
-  /* headline tighter + not oversized */
   .landingHero h1{
-    font-size: clamp(30px, 7vw, 42px);
-    line-height: 1.1;
+    font-size: clamp(28px, 7.4vw, 40px);
+    line-height: 1.08;
+    letter-spacing: .1px;
   }
 
-  /* tiles should feel “full” but not huge */
   .tileRow{
-    width: min(560px, 94vw); /* this is the main fix */
+    width: min(560px, 94vw);
     gap: 12px;
     padding: 0;
   }
 
   .navTile{
     width: 100%;
-    height: 175px;                 /* slightly taller so it feels premium */
+    height: 175px;
     grid-template-columns: 72px 1fr;
     gap: 14px;
     padding: 14px 16px;
     border-radius: 18px;
   }
 
-  .navTile .tileIcon{
-    width: 56px;
-    height: 56px;
-  }
-
-  .navTile img.tileIcon{
-    width: 48px;
-    height: 48px;
-  }
-
-  .tileLabel{
-    font-size: 24px;
-    letter-spacing: 0.01em;
-  }
+  .navTile .tileIcon{ width: 56px; height: 56px; }
+  .tileLabel{ font-size: 24px; letter-spacing: 0.01em; }
 }
 
-/* even smaller phones: keep it from getting chunky */
 @media (max-width: 420px){
+  .landingHero h1{
+    font-size: clamp(24px, 8.4vw, 34px);
+    line-height: 1.06;
+  }
   .tileRow{ width: min(520px, 92vw); }
   .navTile{ height: 165px; grid-template-columns: 66px 1fr; padding: 12px 14px; }
-  .navTile img.tileIcon{ width: 120px; height: 44px; }
   .tileLabel{ font-size: 22px; }
 }
-
 
 /* Enterprise nav additions */
 .topbar-links{
@@ -797,12 +745,14 @@ body.marketing .brandMark{
   border-radius: 14px;
   box-shadow: 0 12px 22px rgba(40,32,24,0.14);
 }
+
 .brandCenter{
   display:flex;
   align-items:center;
   justify-content:center;
   gap: 0;
 }
+
 .topbar-right{
   display:flex;
   gap: 10px;
@@ -909,8 +859,8 @@ body.marketing .brandMark{
   font-family: var(--serif);
   font-weight: 800;
   letter-spacing: 0.02em;
-  font-size: clamp(22px, 3.2vw, 34px);
-  line-height: 1.1;
+  font-size: var(--brand-font);
+  line-height: 1.05;
   text-align:center;
 }
 .topbar-links{
@@ -923,11 +873,38 @@ body.marketing .brandMark{
 @media (max-width: 720px){
   .topbar-links{ display:none; }
   .topbar-left{ gap: 8px; }
-  .brandMark{ width:42px; height:42px; }
-  .brandTitle{ font-size: 22px; }
+  .brandMark{ width:40px; height:40px; margin-right: 8px; }
+  .brandTitle{ font-size: clamp(18px, 5.4vw, 22px); }
+
+  /* NEW: tighten nav actions so they look professional on phones */
+  .topbar-right{ gap: 8px; }
+  .btn{ gap: 6px; }
+  .btnIcon .btnSvg{ width: 16px; height: 16px; }
 }
 
+@media (max-width: 560px){
+  .brandMark{ width:36px; height:36px; }
+  .btn{
+    padding: 7px 10px;
+    font-size: 12.5px;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.55),
+      0 8px 14px rgba(40,32,24,0.08);
+  }
+  .btnIcon .btnSvg{ width: 15px; height: 15px; }
+}
 
+@media (max-width: 420px){
+  .topbar-inner{ gap: 6px; }
+  .brandMark{ width:34px; height:34px; margin-right: 6px; }
+  .brandTitle{ font-size: 18px; }
+  .btn{ padding: 6px 9px; font-size: 12px; }
+}
+
+@media (max-width: 360px){
+  .btn{ padding: 6px 8px; font-size: 11.5px; }
+  .brandTitle{ font-size: 17px; }
+}
 
 /* =========================================================
    App frame (Option 2) — heritage card wrapper for pages
@@ -969,19 +946,36 @@ body.marketing .brandMark{
   box-shadow: none;
   text-align:center;
 }
+
+/* UPDATED: hero title scales down cleanly on phones/tablets */
 .heroTitle{
   margin: 18px 0 18px;
   font-family: var(--serif);
-  font-weight: 700;
-  font-size: clamp(30px, 3.25vw, 44px);
-  line-height: 1.08;
+  font-weight: 800;
+  font-size: var(--hero-font);
+  line-height: 1.06;
+  letter-spacing: .15px;
   color: rgba(80,54,38,.92);
   text-shadow:
     0 2px 0 rgba(255,255,255,.55),
     0 10px 22px rgba(60,40,25,.18);
 }
 
-/* Encapsulating feature shell (closer to the reference mock) */
+/* additional tightening for smaller devices */
+@media (max-width: 720px){
+  .heroTitle{
+    font-size: clamp(24px, 7.4vw, 34px);
+    line-height: 1.05;
+    margin: 14px 0 14px;
+  }
+}
+@media (max-width: 420px){
+  .heroTitle{
+    font-size: clamp(22px, 8.3vw, 30px);
+    line-height: 1.04;
+  }
+}
+
 .featureShell{
   margin: 10px auto 0;
   padding: 0;
@@ -998,7 +992,6 @@ body.marketing .brandMark{
   margin: 0;
 }
 .featureCard{
-  /* +20% height for more presence */
   min-height: 330px;
   border-radius: 16px;
   background:
@@ -1011,7 +1004,6 @@ body.marketing .brandMark{
     0 2px 0 rgba(60,40,25,.06);
 }
 .featureIcon{
-  /* Larger illustration area */
   width: 92%;
   height: 165px;
   margin: 0 auto 10px;
@@ -1028,7 +1020,6 @@ body.marketing .brandMark{
   color: rgba(75,50,36,.95);
 }
 .featureCard p{
-  /* Tighter typography + less airy block feel */
   margin: 2px 0 0;
   color: rgba(40,32,24,.72);
   font-size: .98rem;
@@ -1071,7 +1062,6 @@ body.marketing .brandMark{
 .heroMiniLinks a:hover{ text-decoration: underline; }
 .dotSep{ margin: 0 8px; opacity:.6; }
 
-/* Landing footer (matches mock) */
 .landingDivider{
   height: 1px;
   width: 100%;
@@ -1200,4 +1190,222 @@ body.marketing .footer{ display:none; }
   .navbtn{ display:inline-flex; }
   .topbar-links{ display:none; }
   .topbar-right{ gap:8px; }
+}
+
+/* =========================================================
+   LineAgeMap — Landing (Marketing) styles (legacy section kept)
+========================================================= */
+
+/* NOTE:
+   You had a second landing CSS block in the original file. Keeping it as-is can
+   cause override fights. If you still have a separate home-extra.css, move this
+   block there. If not, leave it, but keep only ONE definition for heroTitle etc.
+*/
+
+/* =========================================================
+   Landing posters (reference) — vertical cards (kept)
+   ========================================================= */
+
+:root{
+  --ink: #5b3f2d;
+  --inkSoft: rgba(91,63,45,.92);
+  --rule: rgba(120,88,60,.30);
+  --panel: rgba(255,255,255,.55);
+  --panel2: rgba(255,255,255,.35);
+  --paper: rgba(246,238,226,.55);
+  --shadowA: rgba(60,40,24,.16);
+  --shadowB: rgba(60,40,24,.10);
+  --gold1: #caa462;
+  --gold2: #b28a45;
+}
+
+.marketingLanding{ padding: 28px 18px 18px; }
+
+.heroFrame{ max-width: 1180px; margin: 0 auto; text-align: center; }
+
+.heroTitle{
+  font-family: var(--serif);
+  font-weight: 800;
+  letter-spacing: .1px;
+  font-size: clamp(28px, 5.6vw, 54px);
+  line-height: 1.06;
+  color: var(--ink);
+  margin: 18px auto 10px;
+  text-shadow: 0 1px 0 rgba(255,255,255,.55);
+}
+
+.heroOrnament{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  margin: 8px auto 22px;
+  opacity:.85;
+}
+.heroOrnament .line{
+  width:min(260px, 26vw);
+  height:1px;
+  background: linear-gradient(to right,
+    rgba(120,88,60,0),
+    rgba(120,88,60,.55),
+    rgba(120,88,60,0));
+}
+.heroOrnament .glyph{
+  color: rgba(120,88,60,.78);
+  font-size: 18px;
+  transform: translateY(1px);
+}
+
+.featureShell{
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 5px;
+}
+
+.featureGrid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  gap: 18px;
+  align-items: stretch;
+  justify-items: center;
+  margin: 0 auto;
+  max-width: 1120px;
+}
+
+.featureCard{
+  width: 100%;
+  max-width: 360px;
+  display: grid;
+  grid-template-rows: 3.5fr 0.5fr;
+  min-height: 540px;
+  padding: 10px;
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid rgba(120,88,60,.22);
+  border-radius: 18px;
+  box-shadow:
+    0 22px 44px var(--shadowA),
+    0 2px 0 rgba(255,255,255,.55) inset;
+}
+
+.featureIcon{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 14px;
+  background: var(--paper);
+  border-bottom: 1px solid rgba(120,88,60,.18);
+}
+.featureIcon img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+  filter: saturate(.96) contrast(.98);
+}
+
+.featureCard h2{
+  margin: 0;
+  padding: 16px 18px 6px;
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.featureCard p{
+  margin: 0;
+  padding: 0 18px 16px;
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.35;
+  color: var(--inkSoft);
+}
+
+.heroCTA{ margin: 18px auto 0; }
+
+.ctaGold{
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: 14px;
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(var(--gold1), var(--gold2));
+  border: 1px solid rgba(90,60,30,.35);
+  box-shadow:
+    0 10px 22px var(--shadowB),
+    0 1px 0 rgba(255,255,255,.35) inset;
+  text-shadow: 0 1px 0 rgba(0,0,0,.18);
+}
+.ctaGold:hover{ filter: brightness(1.03); transform: translateY(-1px); }
+
+.landingDivider{
+  height: 1px;
+  max-width: 980px;
+  margin: 22px auto 0;
+  background: linear-gradient(to right,
+    rgba(120,88,60,0),
+    rgba(120,88,60,.35),
+    rgba(120,88,60,0));
+  opacity: .9;
+}
+
+.landingFooter{
+  margin-top: 14px;
+  padding: 10px 0 0;
+  color: rgba(91,63,45,.86);
+}
+.landingFooterRow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 800;
+}
+.landingFooterRow a{ color: rgba(91,63,45,.9); text-decoration: none; }
+.landingFooterRow a:hover{ text-decoration: underline; }
+.dotSep{ opacity: .7; }
+.landingSocial{ display:flex; gap: 10px; margin-left: 6px; }
+.socialIcon{
+  width: 28px;
+  height: 28px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color: rgba(91,63,45,.75);
+  border-radius: 10px;
+  border: 1px solid rgba(120,88,60,.18);
+  background: rgba(255,255,255,.35);
+}
+.socialIcon svg{ width: 18px; height: 18px; }
+.landingFooterSub{
+  margin-top: 12px;
+  font-family: var(--serif);
+  font-size: 16px;
+  color: rgba(91,63,45,.70);
+}
+
+@media (max-width: 980px){
+  .featureGrid{
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    gap: 14px;
+  }
+  .featureCard{
+    max-width: 560px;
+    min-height: 560px;
+  }
+  .heroTitle{
+    font-size: clamp(24px, 7.4vw, 40px);
+    line-height: 1.05;
+  }
 }
